@@ -1,9 +1,9 @@
 # WebGL Experiments
 
 This project showcases various interactive WebGL modules, including:
-- [Primitives](primitives/): Basic geometric rendering
-- [Shoot 'Em Up](shmup/): A top-down space shooter demo
-- [Procedurally Generated Tiles](tiles/): Dynamic tile-based environments
+- [Primitives](https://quakephil.github.io/browser-games/primitives/): Basic geometric rendering
+- [Shoot 'Em Up](https://quakephil.github.io/browser-games/shmup/): A top-down space shooter demo
+- [Procedurally Generated Tiles](https://quakephil.github.io/browser-games/tiles/): Dynamic tile-based environments
 
 ## Running Locally
 
