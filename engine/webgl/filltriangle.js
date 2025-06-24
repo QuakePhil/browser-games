@@ -1,5 +1,5 @@
-export const Triangle = Base => class extends Base {
-    triangle(x1, y1, x2, y2, x3, y3) {
+export const FillTriangle = Base => class extends Base {
+    fillTriangle(x1, y1, x2, y2, x3, y3) {
         const vertices = [x1, y1, x2, y2, x3, y3]
 
         const gl = this.gl
@@ -11,8 +11,8 @@ export const Triangle = Base => class extends Base {
         gl.vertexAttribPointer(this.a_position, 2, gl.FLOAT, false, 0, 0)
 
         gl.uniform2f(this.u_resolution, ...this.resolution)
-        gl.uniform4f(this.u_color, ...this.color)
+        gl.uniform4f(this.u_color, ...this.fillColor)
 
-        gl.drawArrays(gl.LINE_LOOP, 0, 3)
+        gl.drawArrays(gl.TRIANGLES, 0, 3)
     }
 }

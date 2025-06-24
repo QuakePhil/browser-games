@@ -15,6 +15,7 @@ export class Render {
         this.canvas.height = window.innerHeight
         console.debug(`Width: ${this.canvas.width}, Height: ${this.canvas.height}`)
         this.ctx.resize()
+        this.scene.resize?.()
     }
 
     run() {
