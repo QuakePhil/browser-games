@@ -46,8 +46,8 @@ export class Layout {
                         y + y_margin,
                         x + x_step - x_margin,
                         y + y_step - y_margin,
-                        10,
-                        10
+                        Math.min(x_step, y_step) / 42,
+                        Math.min(x_step, y_step) / 42
                     )
                 }
                 x += x_step
