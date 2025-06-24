@@ -33,9 +33,17 @@ export class Tile {
             'olive', 'aqua', 'azure', 'beige', 'coral',
             'crimson', 'khaki', 'lavender', 'salmon', 'turquoise'
         ]
-        //return colors[Math.floor(r * colors.length)]
         //return '#' + Math.floor(r * 16777215).toString(16).padStart(6, '0')
-        return [pcg.next(), pcg.next(), pcg.next(), 1]
+        let rgbColors = [
+            [1, 0, 0, 1],
+            [0, 1, 0, 1],
+            [0, 0, 1, 1],
+            [1, 1, 0, 1],
+            [1, 0, 1, 1],
+            [0, 1, 1, 1],
+        ]
+        //return [pcg.next(), pcg.next(), pcg.next(), 1]
+        return rgbColors[Math.floor(pcg.next() * rgbColors.length)]
     }
 
     static getOrGenerate(tiles, tile_x, tile_y) {
@@ -49,7 +57,8 @@ export class Tile {
                 tile = { 'color': this.getRandomColor(pcg) }
             }
             tile.margin = pcg.next() * 0.1 + 0.05
-            tile.buildings = pcg.next() < 0.5 ? 1 : 4
+            let buildings = [0, 4, 4, 1, 4]
+            tile.buildings = buildings[Math.floor(pcg.next() * buildings.length)]
             // tile.trees = pcg.next() < 0.5 ? 1 : 4
             tiles.set(tile_x, tile_y, tile)
             //blurb = 'fillRect-new'
@@ -100,7 +109,13 @@ export class Tile {
             ctx.dashLine(...args)
         }, x, y, x + w, y, dashes, dashes)
 
-        if (tile.buildings == 1) {
+        if (tile.buildings == 0) {
+            const m = w * 0.1 // tile.margin // 0.15
+            ctx.setFillColor([0, 0.5, 0, 1])
+            mouse.zoomAndPan((...args) => {
+                ctx.fillRect(...args)
+            }, x + m, y + m, x + w - m, y + h - m)
+        } else if (tile.buildings == 1) {
             const m = w * 0.1 // tile.margin // 0.15
             ctx.setFillColor(tile.color)
             mouse.zoomAndPan((...args) => {

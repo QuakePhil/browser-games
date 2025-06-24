@@ -4,8 +4,8 @@ import { Tile } from './tiles/tile.js'
 export class Tiles extends TwoDimensionalDict {
     constructor() {
         super()
-        this.width = 200
-        this.height = 200
+        this.width = 150
+        this.height = 150
     }
 
     toNearest(mouse, num, nearest) {
