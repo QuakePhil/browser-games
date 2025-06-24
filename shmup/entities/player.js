@@ -21,11 +21,11 @@ export class Player extends Vulnerable {
     }
 
     draw(ctx) {
-        ctx.setColor([0.1, 0.6, 0.9, 1])
-        ctx.circle(this.waypoint_x, this.waypoint_y, this.waypoint_r)
+        ctx.setFillColor([0.1, 0.6, 0.9, 1])
+        ctx.fillCircle(this.waypoint_x, this.waypoint_y, this.waypoint_r, 8)
 
-        ctx.setColor(this.getColorBasedOnHP())
-        ctx.triangle(this.x, this.y - 20, this.x - 10, this.y + 5, this.x + 10, this.y + 5)
+        ctx.setFillColor(this.getColorBasedOnHP())
+        ctx.fillTriangle(this.x, this.y - 20, this.x - 10, this.y + 5, this.x + 10, this.y + 5)
     }
 
     think() {

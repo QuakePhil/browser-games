@@ -31,8 +31,8 @@ export class Enemy extends Vulnerable {
     }
 
     draw(ctx) {
-        ctx.setColor([1, 0, 0, 1])
-        ctx.triangle(this.x, this.y + 20, this.x - 10, this.y - 5, this.x + 10, this.y - 5)
+        ctx.setFillColor([1, 0, 0, 1])
+        ctx.fillTriangle(this.x, this.y + 20, this.x - 10, this.y - 5, this.x + 10, this.y - 5)
     }
 
     think() {
