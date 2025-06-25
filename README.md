@@ -5,6 +5,8 @@ This project showcases various interactive WebGL modules, including:
 - [Shoot 'Em Up](https://quakephil.github.io/browser-games/shmup/): A top-down space shooter demo
 - [Procedurally Generated Tiles](https://quakephil.github.io/browser-games/tiles/): Dynamic tile-based environments
 
+... and [more](https://quakephil.github.io/browser-games/)!
+
 ## Running Locally
 
 ### 1. Using the Live Server Extension in VS Code
