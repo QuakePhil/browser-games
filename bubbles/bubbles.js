@@ -1,3 +1,15 @@
+let previousRandom = null
+function nextRandom(max) {
+    let n
+    do {
+        n = Math.floor(Math.random() * max)
+    } while (n === previousRandom)
+
+    previousRandom = n
+    return n
+}
+
+
 export class Bubbles {
     constructor(canvas, columns, rows) {
         this.canvas = canvas
@@ -6,7 +18,7 @@ export class Bubbles {
         for (let y = 0; y < rows; y++) {
             const row = []
             for (let x = 0; x < columns; x++) {
-                row.push(Math.floor(Math.random() * 6))
+                row.push(nextRandom(6))
             }
             this.bubbles.push(row)
         }
