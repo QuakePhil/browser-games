@@ -9,7 +9,7 @@ export class Ball {
         this.x = this.canvas.width / 2
         this.y = this.canvas.height / 2
         this.x_speed = 0
-        this.y_speed = 2
+        this.y_speed = 4
         this.accelerate = 1
     }
 
