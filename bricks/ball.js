@@ -10,6 +10,7 @@ export class Ball {
         this.y = this.canvas.height / 2
         this.x_speed = 0
         this.y_speed = 2
+        this.accelerate = 1
     }
 
     bounce() {
@@ -29,7 +30,7 @@ export class Ball {
         ctx.fillCircle(this.x, this.y, this.size)
 
         this.bounce()
-        this.x += this.x_speed
-        this.y += this.y_speed
+        this.x += this.x_speed * this.accelerate
+        this.y += this.y_speed * this.accelerate
     }
 }

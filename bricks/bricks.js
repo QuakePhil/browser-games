@@ -37,10 +37,12 @@ export class Bricks {
 
         for (let y = 0; y < this.bricks.length; y++) {
             for (let x = 0; x < this.bricks[y].length; x++) {
-                const bounds = this.getBrickBounds(x, y, this.bricks[0].length, this.bricks.length)
-                const color = colors[this.bricks[y][x]]
-                ctx.setFillColor(color)
-                ctx.fillRect(...bounds)
+                if (this.bricks[y][x] > 0) {
+                    const bounds = this.getBrickBounds(x, y, this.bricks[0].length, this.bricks.length)
+                    const color = colors[this.bricks[y][x]]
+                    ctx.setFillColor(color)
+                    ctx.fillRect(...bounds)
+                }
             }
         }
     }

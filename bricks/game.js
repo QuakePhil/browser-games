@@ -41,8 +41,21 @@ export class Game {
     }
 
     bounce() {
+        const bricks = this.bricks.bricks
+        for (let y = 0; y < bricks.length; y++) {
+            for (let x = 0; x < bricks[y].length; x++) {
+                if (bricks[y][x] > 0) {
+                    let brickBounds = this.bricks.getBrickBounds(x, y, bricks[0].length, bricks.length)
+                    let collideBrick = this.rectIntersectsCircle(this.ball, brickBounds)
+                    if (collideBrick) {
+                        bricks[y][x] = 0
+                        return "brick"
+                    }
+                }
+            }
+        }
         return (
-            this.rectIntersectsCircle(this.ball, this.paddle.bounds())
+            this.rectIntersectsCircle(this.ball, this.paddle.bounds()) ? "paddle" : false
         )
     }
 
@@ -53,9 +66,14 @@ export class Game {
         this.bricks.draw(this.render.ctx)
         this.ball.draw(this.render.ctx)
 
-        if (this.bounce()) {
+        let bounce = this.bounce()
+        if (bounce !== false) {
             this.ball.y_speed *= -1
-            this.ball.x_speed += (this.bounce_x_adjust / this.bounce_x_adjustment_factor)
+            if (bounce == "paddle") {
+                this.ball.x_speed += (this.bounce_x_adjust / this.bounce_x_adjustment_factor)
+            } else if (bounce == "brick") {
+                this.ball.accelerate += 0.2
+            }
         }
     }
 }
