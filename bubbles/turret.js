@@ -1,3 +1,5 @@
+import { Bubble } from './bubble.js'
+
 export class Turret {
     constructor(canvas) {
         this.canvas = canvas
@@ -5,7 +7,12 @@ export class Turret {
         this.y = canvas.height * 0.9
         this.waypoint_x = this.x
         this.waypoint_y = this.y - 100
-        this.speed = 5
+
+        this.shot = new Bubble()
+
+        document.addEventListener("mouseup", (event) => {
+            this.shot.shoot(event.clientX - this.x, event.clientY - this.y, 5)
+        })
 
         document.addEventListener("mousemove", (event) => {
             // TODO: update waypoint to point to mouse, using a limited size (of 100, for now)
@@ -44,8 +51,9 @@ export class Turret {
     }
 
     draw(ctx) {
-        ctx.setFillColor([1, 0, 0, 1])
-        ctx.fillCircle(this.x, this.y, this.size)
+        //ctx.setFillColor([1, 0, 0, 1])
+        //ctx.fillCircle(this.x, this.y, this.size)
+        this.shot.draw(ctx, this.x, this.y, this.size)
 
         ctx.setColor([1, 0, 0, 1])
         ctx.line(this.x, this.y, this.waypoint_x, this.waypoint_y)
