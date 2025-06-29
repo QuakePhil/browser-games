@@ -2,10 +2,7 @@
 //import { Mouse } from "./mouse.js"
 
 // mixins
-import { Line } from './webgl/line.js'
-import { Rect } from './webgl/rect.js'
-import { Triangle } from './webgl/triangle.js'
-import { Circle } from './webgl/circle.js'
+import { Shapes } from './shapes.js'
 
 class Base {
     constructor(canvas) {
@@ -75,4 +72,4 @@ class Base {
     }
 }
 
-export class WebGL extends Circle(Triangle(Rect(Line(Base)))) { }
+export class WebGL extends Shapes(Base) { }
