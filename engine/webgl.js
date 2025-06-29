@@ -3,13 +3,9 @@
 
 // mixins
 import { Line } from './webgl/line.js'
-import { DashLine } from './webgl/dashline.js'
 import { Rect } from './webgl/rect.js'
-import { FillRect } from './webgl/fillrect.js'
 import { Triangle } from './webgl/triangle.js'
-import { FillTriangle } from './webgl/filltriangle.js'
 import { Circle } from './webgl/circle.js'
-import { FillCircle } from './webgl/fillcircle.js'
 
 class Base {
     constructor(canvas) {
@@ -79,4 +75,4 @@ class Base {
     }
 }
 
-export class WebGL extends FillCircle(Circle(FillTriangle(Triangle(FillRect(Rect(DashLine(Line(Base)))))))) { }
+export class WebGL extends Circle(Triangle(Rect(Line(Base)))) { }

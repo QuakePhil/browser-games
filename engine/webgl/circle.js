@@ -1,7 +1,13 @@
 export const Circle = Base => class extends Base {
-    circle(x, y, radius, segments = 64) {
-        const vertices = []
-        for (let i = 0; i < segments; i++) {
+    _circle(x, y, radius, segments, mode, color) {
+        let steps = segments
+        let vertices = []
+        if (mode === this.gl.TRIANGLE_FAN) {
+            steps += 1
+            vertices = [x, y]
+        }
+
+        for (let i = 0; i < steps; i++) {
             const angle = (i / segments) * 2 * Math.PI
             vertices.push(x + radius * Math.cos(angle))
             vertices.push(y + radius * Math.sin(angle))
@@ -16,8 +22,16 @@ export const Circle = Base => class extends Base {
         gl.vertexAttribPointer(this.a_position, 2, gl.FLOAT, false, 0, 0)
 
         gl.uniform2f(this.u_resolution, ...this.resolution)
-        gl.uniform4f(this.u_color, ...this.color)
+        gl.uniform4f(this.u_color, ...color)
 
-        gl.drawArrays(gl.LINE_LOOP, 0, segments)
+        gl.drawArrays(mode, 0, vertices.length / 2)
+    }
+
+    circle(x, y, radius, segments = 64) {
+        this._circle(x, y, radius, segments, this.gl.LINE_LOOP, this.color)
+    }
+
+    fillCircle(x, y, radius, segments = 32) {
+        this._circle(x, y, radius, segments, this.gl.TRIANGLE_FAN, this.fillColor)
     }
 }
