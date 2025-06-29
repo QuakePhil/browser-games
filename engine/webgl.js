@@ -1,7 +1,3 @@
-// for zoom and pan
-//import { Mouse } from "./mouse.js"
-
-// mixins
 import { Shapes } from './shapes.js'
 
 class Base {
