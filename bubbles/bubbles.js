@@ -1,35 +1,37 @@
 import { Bubble } from './bubble.js'
+import { TwoDimensionalDict } from '../tiles/world/tiles/dict2d.js' // todo: move to ../engine
 
-export class Bubbles {
+export class Bubbles extends TwoDimensionalDict {
     constructor(canvas, columns, rows) {
+        super()
         this.canvas = canvas
-        this.bubbles = []
+        this.columns = columns
+        this.rows = rows // TODO: do we need this?
+        // this.bubbles = []
 
         for (let y = 0; y < rows; y++) {
-            const row = []
             for (let x = 0; x < columns; x++) {
-                row.push(new Bubble())
+                this.set(x, y, new Bubble())
             }
-            this.bubbles.push(row)
         }
+        this.set(2, 4, new Bubble())
+        this.set(10, 6, new Bubble())
     }
 
     bubbleSize() {
         const canvasWidth = this.canvas.width
         const canvasHeight = this.canvas.height
-        const columns = this.bubbles[0].length
-        const rows = this.bubbles.length
         return Math.min(
-            (canvasWidth) / (columns + 0.5),
-            (canvasHeight) / rows
+            (canvasWidth) / (this.columns + 0.5),
+            (canvasHeight) / this.rows
         ) / 2
     }
 
-    draw(ctx) {
-        for (let y = 0; y < this.bubbles.length; y++) {
-            for (let x = 0; x < this.bubbles[y].length; x++) {
-                this.bubbles[y][x].drawOnGrid(ctx, x, y, this.bubbleSize())
-            }
-        }
+    draw(ctx, cb) {
+        const size = this.bubbleSize()
+        this.iterate((x, y, bubble) => {
+            let bounds = bubble.drawOnGrid(ctx, x, y, size)
+            cb(x, y, bounds[0], bounds[1], bounds[2])
+        })
     }
 }

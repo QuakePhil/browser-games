@@ -29,6 +29,7 @@ export class Turret {
             // Angle in radians, relative to horizontal
             const angle = Math.atan2(-dy, dx) // negative dy since y-axis points down
             const angleDeg = Math.abs(angle * (180 / Math.PI))
+            // TODO: turret still able to point down.
 
             // Reject near-horizontal directions (±15° from 0° or 180°)
             if (angleDeg < 15 || angleDeg > 165) return

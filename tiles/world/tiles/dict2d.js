@@ -26,4 +26,12 @@ export class TwoDimensionalDict {
             }
         }
     }
+
+    iterate(cb) {
+        for (const x in this.data) {
+            for (const y in this.data[x]) {
+                cb(x, y, this.data[x][y])
+            }
+        }
+    }
 }
