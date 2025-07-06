@@ -14,8 +14,6 @@ export class Bubbles extends TwoDimensionalDict {
                 this.set(x, y, new Bubble())
             }
         }
-        this.set(2, 4, new Bubble())
-        this.set(10, 6, new Bubble())
     }
 
     bubbleSize() {

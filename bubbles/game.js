@@ -5,7 +5,7 @@ import { Turret } from './turret.js'
 export class Game {
     constructor(render) {
         this.render = render
-        this.bubbles = new Bubbles(this.render.canvas, 20, 4)
+        this.bubbles = new Bubbles(this.render.canvas, 20, 2)
         this.resize()
     }
 
